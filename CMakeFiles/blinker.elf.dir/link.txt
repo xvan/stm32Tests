@@ -1,0 +1,1 @@
+/usr/bin/arm-none-eabi-gcc -O0 -mthumb -fno-builtin -Wall -ffunction-sections -fdata-sections -fomit-frame-pointer -mabi=aapcs -std=gnu99  -Wl,--gc-sections --specs=nano.specs --specs=nosys.specs -mthumb -mabi=aapcs -Wl,-Map=blinker.map CMakeFiles/blinker.elf.dir/src/main.c.o -o blinker.elf 

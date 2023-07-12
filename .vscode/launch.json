@@ -1,0 +1,73 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "OpenOCD GDB",
+            "type": "cppdbg",
+            "request": "launch",
+            "targetArchitecture": "arm",
+            "program": "${command:cmake.launchTargetPath}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${command:cmake.launchTargetDirectory}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Habilitar la impresión con sangría para gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            //"preLaunchTask": "C/C++: arm-none-eabi-gcc compilar archivo activo",
+            "miDebuggerPath": "/usr/bin/gdb-multiarch",
+            "customLaunchSetupCommands": [
+                {
+                    "text": "set remotetimeout 20",
+                    "description": "waiting for openOCD",
+                    "ignoreFailures": false
+                },
+                // {
+                //     //debiera ser armv7e-m, pero no todas lo tienen
+                //     "text": "set architecture armv5te",
+                //     "description": "Set Architecture",
+                //     "ignoreFailures": false
+                // },
+                {
+                    "text": "target remote | openocd -c \"gdb_port pipe; log_output openocd.log\" -f ${workspaceFolder}/openocd.cfg -c \"init; reset halt\"",                    
+                    "description": "start OpenOCD",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "file ${command:cmake.launchTargetPath}",
+                    "description": "load elf file",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "break main",
+                    "description": "funcara?",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "load", 
+                    "description": "load elf file",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "monitor reset halt",
+                    "description": "por las dudas volvemos a resetear",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "c", 
+                    "description": "run",
+                    "ignoreFailures": true
+                },
+            ]
+        }
+    ]
+}

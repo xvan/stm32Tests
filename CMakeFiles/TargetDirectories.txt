@@ -1,0 +1,3 @@
+/home/jzuloaga/bluepill/CMakeFiles/blinker.elf.dir
+/home/jzuloaga/bluepill/CMakeFiles/edit_cache.dir
+/home/jzuloaga/bluepill/CMakeFiles/rebuild_cache.dir
